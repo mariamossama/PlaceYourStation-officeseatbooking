@@ -8,6 +8,8 @@ public class PlaceYourStationApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PlaceYourStationApplication.class, args);
+
+		System.out.println("hi");
 	}
 
 }
