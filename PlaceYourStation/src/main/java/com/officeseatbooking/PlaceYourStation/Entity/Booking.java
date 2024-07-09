@@ -31,6 +31,10 @@ public class Booking {
     private LocalDateTime bookingTime = LocalDateTime.now();
     private LocalDateTime startTime;
     private LocalDateTime endTime;
+    public void setSeat(Station seat) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setSeat'");
+    }
 
 
 }

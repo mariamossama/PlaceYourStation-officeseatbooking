@@ -16,7 +16,7 @@ import com.officeseatbooking.PlaceYourStation.Repo.UserRepository;
 @Service
 public class BookingService {
     @Autowired
-    private StationRepository seatRepository;
+    private StationRepository stationRepository;
 
     @Autowired
     private BookingRepository bookingRepository;
@@ -25,7 +25,7 @@ public class BookingService {
     private UserRepository userRepository;
 
     public Booking bookSeat(Long seatId, Long userId, LocalDateTime startTime, LocalDateTime endTime) {
-        Station seat = seatRepository.findById(seatId).orElseThrow(() -> new RuntimeException("Seat not found"));
+        Station seat = stationRepository.findById(seatId).orElseThrow(() -> new RuntimeException("Seat not found"));
         if (!seat.isAvailable()) {
             throw new RuntimeException("Seat is already booked");
         }
@@ -33,7 +33,7 @@ public class BookingService {
         com.officeseatbooking.PlaceYourStation.Entity.User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
 
         seat.setAvailable(false);
-        seatRepository.save(seat);
+        stationRepository.save(seat);
 
         Booking booking = new Booking();
         booking.setSeat(seat);
@@ -45,6 +45,6 @@ public class BookingService {
     }
 
     public List<Station> getAvailableSeats() {
-        return seatRepository.findByIsAvailable(true);
+        return stationRepository.findByIsAvailable(true);
     }
 }
